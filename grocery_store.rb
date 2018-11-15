@@ -64,25 +64,48 @@ def add_items
   @items[choice - 1]
   @cart << @items[choice - 1]
   print `clear`
-  puts "Item has been successfully added to cart."
-  puts @cart
-  # @cart.each_with_index do |cart, c|
-  #   puts "#{c + 1}) #{cart[:name]} - $#{cart[:price]}"
-    #puts @cart.map {|x| x.values}
-    #item has been successfully added to cart 
-    #please make another selection
-    #puts "#{@cart[:name]} - $#{@cart[:price]}"
+  puts "Item has been successfully added to cart:"
+  puts "Would you like to add another item? y/n"
+  answer = gets.strip
+  if answer == "y"
+    add_items
+  else 
+    menu
+  end
     # once I'm done putting items in the cart how do I get back to the menu???
 end
 
 def view_items
   print `clear`
-  puts "Items currently in cart"
-  puts @cart
+  puts "Items currently in cart:"
+  @cart.each_with_index do |item, i|
+    puts "#{i + 1}) #{item[:name]} - $#{item[:price]}"
+  end
+  menu
+  # puts "Would you like to return to the menu? y/n"
+  # answer = gets.strip
+  # if answer == "y"
+  #   menu
+  # else 
+  #   menu
+  # end
 end
 
 def remove_items
   # show items in cart
+  print `clear`
+  puts "Items currently in cart:"
+  @cart.each_with_index do |item, i|
+    puts "#{i + 1}) #{item[:name]} - $#{item[:price]}"
+  end
+  puts "What item would you like to remove?"
+  print "> "
+  choice = gets.to_i
+  # binding.pry
+  @cart.delete_at[choice - 1]
+  # @cart.each_with_index do |item, i|
+  #   puts "#{i + 1}) #{item[:name]} - $#{item[:price]}"
+  # end
   # selection to remove items
 end
 
